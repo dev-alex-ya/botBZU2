@@ -1,0 +1,153 @@
+2.1.ВОЗВРАЩЕНИЕ КЛАССИЧЕСКОЙ СЕССИИ
+sudo apt install -y --reinstall gnome-session gnome-session-wayland
+========================================
+9.4.УСТАНОВКА DCONF – НИЗКОУРОВНЕВАЯ СИСТЕМА КОНФИГУРАЦИИ. При помощи dconf в GNOME и Unity хранятся настройки большинства программ.
+sudo apt-get install dconf-editor
+========================================
+2.4 УСТАНОВИТЬ КЛАСИЧЕСКОЕ ЛОГО UBUNTU GNOME
+sudo apt install plymouth-theme-ubuntu-gnome-logo
+Автор: Яцына М.А.
+========================================
+6.4.1.ПРИМЕР ФАЙЛА НАСТРОЕК (/home/$USER/.config/libinput-gestures.conf):
+# Configuration file for libinput-gestures.
+#
+# The default configuration file exists at /etc/libinput-gestures.conf
+# свои конфигурации нужно сохранять здесь: /home/$User/.config/libinput-gestures.conf
+#
+# Переключиться на виртуальный рабочий стол в право(работает в  Wayland и Xorg)
+gesture swipe right	_internal ws_down 
+#  Переключиться на виртуальный рабочий стол влево (работает в  Wayland и Xorg)
+gesture swipe left	_internal ws_up
+#
+# включить супер-зум (для возвращения используйте повторно жест)
+gesture swipe up 3	dbus-send --session --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.overview.toggle();' 
+# показать обзор программ (для возвращения используете жест суперзума)
+gesture swipe down 3	xdotool key super+a
+#
+# gesture swipe down 4	xdotool key control+alt+d - дополнительные жесты если ваш трекпад поддерживает 4 касания
+# gesture swipe up 4 	xdotool key alt+Tab - дополнительные жесты если ваш трекпад поддерживает 4 касания
+ВНИМАНИЕ: обязательно с этой утилитой используйте дополнение для gnome3: Workspaces to Dock
+Автор: Letalis и Яцына М.А.
+========================================
+
+2.УДАЛЕНИЕ ЛИШНЕГО МУСОРА ИЗ GNOME, ПУТЕМ УДАЛЕНИЯ ЕГО САМОГО И УСТАНОВКИ ОСНОВНОЙ ВЕРСИИ GNOME-CORE.
+ВНИМАНИЕ: это лучше делать на чистой установке, в других случаях можно убить или повредить систему.
+sudo apt remove --purge -y gnome
+sudo apt clean
+sudo apt autoremove -y
+sudo apt install gnome-core -y
+Автор: Сарвилин Михаил
+========================================
+0.ВОЗВРАЩЕНИЕ ВАНИЛЬНОГО GNOME 3
+========================================
+2.2.УСТАНОВКА ТВИК УТИЛИТЫ:
+sudo apt install -y gnome-tweak-tool
+========================================
+УСТАНОВКА ЯЗЫКА ПРОГРАММИРОВАНИЕ GO (Go lang), язык разработан google 
+sudo apt-get install golang
+УСТАНАВЛИВАЕМ ОБОЛОЧКУ ДЛЯ УДОБСТВА НАПИСАНИЯ КОДА В GO, LiteIDE
+git clone https://github.com/visualfc/liteide.git
+sudo apt-get update
+sudo apt-get install qt4-dev-tools libqt4-dev libqtcore4 libqtgui4 libqtwebkit-dev g++
+cd /home/$USER/liteide/build
+./update_pkg.sh
+QTDIR=/usr ./build_linux.sh
+cp -a /home/$USER/liteide/build/liteide/ /home/$USER//liteide-go-app/
+rm -rf /home/$USER/liteide/
+nano /home/$USER/liteide-go-app/LiteIDE-Go-APP.desktop
+#в файл нужно добавить текст ниже и не забудьте поправить пути под вашего пользователя!:
+[Desktop Entry]
+Name=LiteIDE-Go-APP
+Comment=IDE for editing and building projects written in the Go programming language
+GenericName=LiteIDE-Go-APP
+Keywords=;
+Exec=/usr/bin/gnome-terminal -e ./liteide
+Terminal=false
+Type=Application
+#после /home/ пишите своего пользователя вместо redroot
+Icon=/home/redroot/liteide-go-app/share/liteide/welcome/images/liteide400.png
+Categories=Development;
+#после /home/ пишите своего пользователя вместо redroot
+Path=/home/redroot/liteide-go-app/bin/
+NoDiplay=false
+#сохраняем файл
+#пробуем запуск из папки /home/..../liteide-go-app/
+#может пожаловаться на безопасность, для решения проблемы, откройте свойства и #поставьте галку на разрешение запуска как программы
+#если все работает, закинем его в папку с ярлыками программ
+sudo cp /home/$USER/liteide-go-app/LiteIDE-Go-APP.desktop /usr/share/applications/
+#теперь ярлык находиться в программах и оболочку для Go не нужно запускать из консоли
+Автор: Яцына М.А.
+========================================
+2.3.ВЕРНУТЬ ДОПОЛНЕНИЯ:
+sudo apt install -y chrome-gnome-shell
+Список дополнений (на сайте: https://extensions.gnome.org/local/)
+ВНИМАНИЕ НЕКОТОРЫЕ ГЛЮЧАТ С NVIDIA, А НЕКТОРЫЕ С AMD
+- Appfolders Management extension - создание папок в главном меню программ
+- Applications Menu - включение меню программ вместо обзор( как в gnome2)
+- Caffeine - не дает ubuntu уйти в сон, если идет просмотр полно экранного видео
+- Dash to Dock - изменения расположения и содержания Дока
+- No Topleft Hot Corner - отключает вызов меню программ при наведении в верхний левый угол мышкой
+- OpenWeather - погода на верхней панели
+- Places Status Indicator - быстрый переход в нужный диск\папку nautlus
+- Removable Drive Menu - меню usb- диски\фешки
+- Sensory Perception - быстрый просмотр сенсоров температуры
+- cpufreq by konkor - индикация и настройка рабочей частоты процессора
+- Sound Settings - быстрый переход к аудио настройкам 
+- TopIcons Plus - иконки программ в верхней панели
+- User Themes - установка сторонних тем
+- Workspace Indicator - индикатор виртуальных рабочих столов
+- Workspaces to Dock - позволяет настроить док рабочих столов, горизонтальный скролинг(удобно с мультитатч текпадом) и другие настройки
+Автор: Яцына Михаил
+========================================
+##Панель убунту (not vanilla gnome)
+##минимизация(или другие действия) в один клик
+##Click action on Icon (skip, minimize, launch, cycle-windows, minimize-or-overview, preview, quit)
+#via command-line Ubuntu Gnome 18.04
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-overview'
+#via command-line Ubuntu Unity 16.04
+gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
+#via dconf-editor
+launch the tool and navigate to org -> gnome -> shell -> extensions -> dash-to-dock. Scroll download, and click go to settings for click-action.
+Finally disable default setting and choose “minimize” as its value from drop-down menu
+========================================
+1.ОБНОВИТЬ СИСТЕМУ И GNOME
+sudo apt-add-repository -y ppa:gnome3-team/gnome3-staging
+sudo apt upgrade
+sudo apt dist-upgrade
+Автор: Яцына Михаил
+========================================
+10. СОЗДАНИЕ ЯРЛЫКА ДЛЯ СКРИПТА: GNOME\MATE
+nano /home/$USER/Unigine_Valley-1.0/Valley_Benchmark.desktop
+#в файл нужно добавить текст ниже и не забудьте поправить пути под вашего пользователя!:
+[Desktop Entry]
+Name=Valley_Benchmark-1.0
+Comment=Valley Benchmark
+GenericName=Valley_Benchmark-1.0
+Keywords=;
+#так же есть варианты для gnome: gnome-terminal,для mate: mate-terminal
+Exec=/usr/bin/mate-terminal -e ./valley
+Terminal=false
+Type=Application
+#после /home/ пишите своего пользователя вместо redroot и можете скачать любой логотип с расшерением .PNG
+Icon=/home/redroot/Unigine_Valley-1.0/Valley-Benchmark.png
+Categories=games;
+OnlyShowIn=GNOME;KDE;LXDE;LXQt;MATE;Razor;ROX;TDE;Unity;XFCE;EDE;Cinnamon;Pantheon;
+#после /home/ пишите своего пользователя вместо redroot
+Path=/home/redroot/Unigine_Valley-1.0/
+NoDiplay=false
+#сохраняем файл
+#пробуем запуск из папки /home/..../Valley_Benchmark.desktop
+#может пожаловаться на безопасность, для решения проблемы, откройте свойства и 
+#поставьте галку на разрешение запуска как программы
+#если все работает, закинем его в папку с ярлыками программ
+sudo cp /home/$USER/Unigine_Valley-1.0/Valley_Benchmark.desktop /usr/share/applications/
+#теперь ярлык находиться в программах и ваш скрипт не нужно запускать из консоли.
+========================================
+2.5 КЛАССИЧИСКИЕ ЦВЕТА GNOME SHELL В ЗАСТАВКЕ С ВЫБОРОМ ПОЛЬЗАВАТЕЛЯ
+sudo update-alternatives --config gdm3.css
+# и выбрать:   1            /usr/share/gnome-shell/theme/gnome-shell.css   5         ручной режим
+Автор: Яцына М.А.
+========================================
+9.3.УПРАВЛЕНИЯ ПОЛЬЗОВАТЕЛЯМИ И ГРУППАМИ
+sudo apt install -y gnome-system-tools
