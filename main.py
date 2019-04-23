@@ -99,10 +99,10 @@ def run():
     solutions = bzu.split('\n\n')
 
     #передаем боту токен подключения
-    bot = telegram.Bot(token = "bot" + token)
+    bot = telegram.Bot(token = token)
 
     #инициализируем объект-обновлятор
-    updater = Updater(token = "bot" + token)
+    updater = Updater(token = token)
 
     #инициализируем систему диспетчиризации
     dispatcher = updater.dispatcher
